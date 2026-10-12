@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baby's Ride to JB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&family=Quicksand:wght@500;600;700&display=swap">
+<style>
+/* Layout: one postcard stage, a looping road scene with the car driving toward a JB skyline, note and hug button below */
+:root{
+  --sky-top:#ffd9e6; --sky-bot:#fff1d6;
+  --bg:#fff7f2; --ink:#5a2a3c; --soft:#b0687f;
+  --pink:#ff7aa2; --pink-deep:#e8507f; --mint:#9be3c9; --mint-deep:#5ec7a4;
+  --butter:#ffe18a; --lilac:#d7c4ff; --road:#7c6a78; --card:#ffffff;
+  --display:"Sniglet","Baloo 2","Comic Sans MS",system-ui,sans-serif;
+  --body:"Quicksand","Nunito",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0;padding-inline:16px;padding-block:28px 40px;
+  background-image:radial-gradient(var(--sky-top) 1.2px,transparent 1.4px);background-size:22px 22px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px;align-items:stretch}
+header{text-align:center;display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7vw,3.4rem);line-height:1.02;margin:0;text-wrap:balance;color:var(--pink-deep)}
+h1 span{color:var(--ink)}
+.sub{margin:0;font-size:1.02rem;color:var(--soft);font-weight:600}
+
+/* stage */
+.stage{position:relative;width:100%;aspect-ratio:16/10;max-width:100%;border-radius:32px;overflow:hidden;
+  background:linear-gradient(var(--sky-top),var(--sky-bot) 70%);
+  box-shadow:0 18px 40px -18px rgba(232,80,127,.45),0 0 0 6px var(--card)}
+.sun{position:absolute;top:9%;right:10%;width:15%;aspect-ratio:1;border-radius:50%;background:var(--butter);
+  box-shadow:0 0 0 12px rgba(255,225,138,.35),0 0 0 26px rgba(255,225,138,.18);animation:pulse 4s ease-in-out infinite}
+.sun::before,.sun::after{content:"";position:absolute;top:44%;width:9%;height:9%;border-radius:50%;background:var(--ink)}
+.sun::before{left:30%}.sun::after{right:30%}
+.sun i{position:absolute;left:50%;top:60%;width:22%;height:11%;transform:translateX(-50%);border:3px solid var(--ink);border-top:0;border-radius:0 0 30px 30px}
+.sun b{position:absolute;top:56%;width:14%;height:8%;border-radius:50%;background:var(--pink);opacity:.6}
+.sun b:first-of-type{left:12%}.sun b:last-of-type{right:12%}
+
+.cloud{position:absolute;height:9%;background:#fff;border-radius:40px;opacity:.95;animation:drift linear infinite}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:45%;aspect-ratio:1;left:14%;bottom:30%}
+.cloud::after{width:34%;aspect-ratio:1;left:48%;bottom:22%}
+.c1{width:17%;top:14%;animation-duration:38s;animation-delay:-6s}
+.c2{width:12%;top:27%;animation-duration:52s;animation-delay:-30s}
+.c3{width:14%;top:8%;animation-duration:45s;animation-delay:-20s}
+
+/* skyline of JB */
+.city{position:absolute;right:4%;bottom:31%;width:34%;height:30%;display:flex;align-items:flex-end;gap:3%}
+.bld{flex:1;background:var(--lilac);border-radius:10px 10px 0 0;position:relative;
+  background-image:radial-gradient(#fff 22%,transparent 26%);background-size:12px 14px;background-position:3px 6px}
+.bld.b1{height:55%}.bld.b2{height:100%;background-color:#c9b2ff}.bld.b3{height:72%}.bld.b4{height:45%;background-color:#e6d9ff}
+.bld.b2::before{content:"";position:absolute;left:50%;top:-16%;width:4%;height:16%;background:#c9b2ff;transform:translateX(-50%)}
+.bld.b2::after{content:"";position:absolute;left:50%;top:-24%;width:16%;aspect-ratio:1;border-radius:50%;background:var(--pink);transform:translateX(-50%);animation:blink 1.6s ease-in-out infinite}
+.pin{position:absolute;right:16%;bottom:66%;font-family:var(--display);font-size:clamp(.62rem,1.9vw,.9rem);background:var(--card);color:var(--pink-deep);
+  padding:.25em .7em;border-radius:999px;box-shadow:0 4px 0 var(--pink);animation:bob 2.4s ease-in-out infinite;white-space:nowrap}
+
+/* hills */
+.hills{position:absolute;left:0;right:0;bottom:24%;height:22%;}
+.hills span{position:absolute;bottom:0;width:60%;height:100%;border-radius:50% 50% 0 0;background:var(--mint)}
+.hills span:nth-child(1){left:-12%}.hills span:nth-child(2){left:30%;height:70%;background:#b7ecd8}
+.hills span:nth-child(3){left:66%;height:55%;width:50%}
+.trees{position:absolute;left:0;bottom:24%;width:200%;height:14%;display:flex;gap:7%;padding-left:3%;animation:scroll 9s linear infinite}
+.tree{width:3.2%;flex:none;position:relative;height:100%}
+.tree::before{content:"";position:absolute;bottom:0;left:42%;width:16%;height:40%;background:#c79a7e;border-radius:4px}
+.tree::after{content:"";position:absolute;bottom:30%;left:0;width:100%;aspect-ratio:1;border-radius:50%;background:var(--mint-deep)}
+
+/* road */
+.road{position:absolute;left:0;right:0;bottom:0;height:25%;background:var(--road)}
+.road::before{content:"";position:absolute;left:0;right:0;top:0;height:9%;background:#f4c6d4}
+.lane{position:absolute;top:52%;left:0;width:200%;height:6%;
+  background:repeating-linear-gradient(90deg,#fff 0 6%,transparent 6% 12%);animation:scroll 1.4s linear infinite}
+.sign{position:absolute;bottom:22%;left:6%;width:15%;height:22%;animation:pass 9s linear infinite}
+.sign .board{background:var(--mint-deep);color:#fff;border:3px solid #fff;border-radius:8px;font-family:var(--display);
+  font-size:clamp(.5rem,1.6vw,.78rem);text-align:center;padding:.3em .2em;line-height:1.15}
+.sign .pole{width:7%;height:60%;background:#8a7a86;margin:0 auto}
+
+/* car */
+.car{position:absolute;left:18%;bottom:13%;width:30%;animation:bounce .5s ease-in-out infinite alternate}
+.car svg{width:100%;height:auto;display:block;overflow:visible}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin .55s linear infinite}
+.puff{position:absolute;left:-6%;bottom:18%;width:10%;aspect-ratio:1;border-radius:50%;background:#fff;opacity:0;animation:puff 1.2s ease-out infinite}
+.puff:nth-of-type(2){animation-delay:.4s}.puff:nth-of-type(3){animation-delay:.8s}
+.trail{position:absolute;inset:0;pointer-events:none}
+.heart{position:absolute;font-size:1.4rem;color:var(--pink);animation:floatUp 2.6s ease-out forwards;pointer-events:none;user-select:none}
+
+/* note */
+.note{background:var(--card);border-radius:24px;padding:22px 24px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 10px 0 -2px #ffe0ea}
+.note p{margin:0;font-size:1.06rem;line-height:1.6;max-width:62ch}
+.note .sig{font-family:var(--display);color:var(--pink-deep);font-size:1.1rem}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+button{font-family:var(--display);font-size:1.05rem;border:0;cursor:pointer;color:#fff;background:var(--pink);
+  padding:.75em 1.4em;border-radius:999px;box-shadow:0 5px 0 var(--pink-deep);transition:transform .15s,box-shadow .15s}
+button:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--pink-deep)}
+button:active{transform:translateY(3px);box-shadow:0 2px 0 var(--pink-deep)}
+button:focus-visible{outline:3px dashed var(--pink-deep);outline-offset:4px}
+.count{font-weight:700;color:var(--soft);font-variant-numeric:tabular-nums}
+
+@keyframes drift{from{left:-20%}to{left:110%}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes pass{from{left:105%}to{left:-25%}}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-3%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes puff{0%{opacity:.8;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(-160%,-40%) scale(1.3)}}
+@keyframes pulse{50%{transform:scale(1.05)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@keyframes blink{50%{opacity:.35}}
+@keyframes floatUp{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-160px) scale(1.2) rotate(var(--r,0deg))}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Next stop Johor Bahru</div>
+    <h1>Baby is heading <span>back to work</span></h1>
+    <p class="sub">Windows down, playlist on, heart full</p>
+  </header>
+
+  <div class="stage" id="stage" aria-label="A cute pink car named Baby driving toward the Johor Bahru skyline">
+    <div class="sun"><b></b><b></b><i></i></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+    <div class="hills"><span></span><span></span><span></span></div>
+    <div class="city">
+      <div class="bld b1"></div><div class="bld b2"></div><div class="bld b3"></div><div class="bld b4"></div>
+    </div>
+    <div class="pin">Johor Bahru ♥</div>
+    <div class="trees">
+      <div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div>
+      <div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div><div class="tree"></div>
+    </div>
+    <div class="road"><div class="lane"></div></div>
+    <div class="sign"><div class="board">JB 12 km<br>♥ ahead</div><div class="pole"></div></div>
+
+    <div class="car">
+      <span class="puff"></span><span class="puff"></span><span class="puff"></span>
+      <svg viewBox="0 0 220 120" aria-hidden="true">
+        <path d="M20 78 Q18 54 46 50 L66 26 Q72 18 86 18 L138 18 Q152 18 160 30 L176 50 Q206 54 204 80 Q204 92 192 92 L30 92 Q20 92 20 78Z" fill="#ff7aa2"/>
+        <path d="M74 30 Q78 25 86 25 L108 25 L108 50 L60 50Z" fill="#fff4f8"/>
+        <path d="M116 25 L138 25 Q148 25 153 33 L165 50 L116 50Z" fill="#fff4f8"/>
+        <circle cx="92" cy="38" r="9" fill="#ffd2b3"/>
+        <path d="M82 36 Q84 24 94 26 Q104 27 102 38 Q100 30 92 31 Q86 31 82 36Z" fill="#5a2a3c"/>
+        <circle cx="89" cy="39" r="1.4" fill="#5a2a3c"/><circle cx="96" cy="39" r="1.4" fill="#5a2a3c"/>
+        <path d="M89.5 43 Q92.5 45.5 95.5 43" stroke="#5a2a3c" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <circle cx="86" cy="42" r="1.8" fill="#ff7aa2" opacity=".6"/><circle cx="99" cy="42" r="1.8" fill="#ff7aa2" opacity=".6"/>
+        <path d="M186 60 q8 2 10 10" stroke="#ffe18a" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <rect x="18" y="66" width="10" height="6" rx="3" fill="#e8507f"/>
+        <text x="112" y="76" text-anchor="middle" font-family="Sniglet, system-ui" font-size="17" font-weight="800" fill="#fff">Baby ♥</text>
+        <path d="M134 6 c-4-6-13-2-10 5 l10 9 10-9 c3-7-6-11-10-5z" fill="#e8507f"/>
+        <g class="wheel"><circle cx="62" cy="92" r="17" fill="#5a2a3c"/><circle cx="62" cy="92" r="7" fill="#ffe18a"/><rect x="60" y="77" width="4" height="30" rx="2" fill="#7c6a78"/></g>
+        <g class="wheel"><circle cx="164" cy="92" r="17" fill="#5a2a3c"/><circle cx="164" cy="92" r="7" fill="#ffe18a"/><rect x="162" y="77" width="4" height="30" rx="2" fill="#7c6a78"/></g>
+      </svg>
+    </div>
+    <div class="trail" id="trail"></div>
+  </div>
+
+  <section class="note">
+    <p>Back to the JB grind, Baby. Drive slow, take a rest stop when you feel sleepy, and text me the moment you arrive. Every kilometre away still counts as close to me.</p>
+    <div class="row">
+      <span class="sig">Love, Haziq</span>
+      <div class="row" style="justify-content:flex-end">
+        <span class="count" id="count" aria-live="polite">0 hugs sent</span>
+        <button id="hug" type="button">Send a hug</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'),trail=document.getElementById('trail'),
+      btn=document.getElementById('hug'),count=document.getElementById('count'),n=0;
+  var glyphs=['♥','♡','✿','♥'];
+  function heart(x,y){
+    var h=document.createElement('span');
+    h.className='heart';h.textContent=glyphs[Math.floor(Math.random()*glyphs.length)];
+    h.style.left=x+'%';h.style.top=y+'%';
+    h.style.setProperty('--r',(Math.random()*60-30)+'deg');
+    h.style.fontSize=(1+Math.random()*1.2)+'rem';
+    trail.appendChild(h);setTimeout(function(){h.remove()},2700);
+  }
+  setInterval(function(){heart(26+Math.random()*16,58+Math.random()*8)},900);
+  btn.addEventListener('click',function(){
+    n++;count.textContent=n+(n===1?' hug sent':' hugs sent');
+    for(var i=0;i<14;i++)setTimeout(function(){heart(10+Math.random()*80,40+Math.random()*40)},i*60);
+  });
+  stage.addEventListener('click',function(e){
+    var r=stage.getBoundingClientRect();
+    heart((e.clientX-r.left)/r.width*100,(e.clientY-r.top)/r.height*100);
+  });
+})();
+</script>
+</body>
+</html>
